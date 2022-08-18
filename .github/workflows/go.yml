@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ os_version }}
+    runs-on: ${{ matrix.os_version }}
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
@@ -35,7 +35,7 @@ jobs:
 
   build:
     needs: test
-    runs-on: ${{ os_version }}
+    runs-on: ${{ matrix.os_version }}
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
