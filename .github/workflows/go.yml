@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os_version }} 
+    runs-on: ubuntu-latest
     environment: staging
     env:
       HOST: localhost
@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
-        os_version: ['ubuntu-latest', 'ubuntu-18.04']
+        # os_version: ['ubuntu-latest', 'ubuntu-18.04']
     steps:
     - uses: actions/checkout@v3
 
@@ -53,6 +53,12 @@ jobs:
     
     - name: Build
       run: go build -v main.go
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: programaGo
+        path: main 
       
   jobs:
     needs: build
