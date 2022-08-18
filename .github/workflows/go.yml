@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os_version }}
     environment: staging
     env:
       HOST: localhost
@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
-        # os_version: ['ubuntu-latest', 'ubuntu-18.04']
+        os_version: ['ubuntu-latest', 'ubuntu-18.04']
     steps:
     - uses: actions/checkout@v3
 
@@ -44,12 +44,11 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go_version: ['1.18', '1.17', '>=1.18']
-        #os_version: ['ubuntu-latest', 'ubuntu-18.04']
+
     steps:
     - uses: actions/checkout@v3
+      with:
+        go-version: 1.18
     
     - name: Build
       run: go build -v main.go
