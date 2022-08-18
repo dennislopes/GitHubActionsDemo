@@ -15,12 +15,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Minha chave secreta
-      run: echo ${{ secrets.test }}
-      
     - name: Não faça isso!
-      run: echo "Danger"
-
+      run: echo "${{ secrets.test }}"
+      
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
