@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os_version }} 
+    environment: staging
     env:
       HOST: localhost
       PORT: 5432
