@@ -17,7 +17,9 @@ jobs:
 
     - name: Minha chave secreta
       run: echo ${{ secrets.test }}
-      run: echo "Don't do that!"
+      
+    - name: Não faça isso!
+      run: echo "Danger"
 
     - name: Set up Go
       uses: actions/setup-go@v3
